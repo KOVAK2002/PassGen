@@ -1,4 +1,36 @@
 ﻿@page
 @model PassGen.Pages.GenerateModel
 @{
+    ViewData["Title"] = "Generiraj lozinke";
+}
+
+<h1>Generiraj lozinke</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="length">Duljina lozinke:</label>
+        <input type="number" class="form-control" id="length" name="Length" value="12" min="6" max="50" required>
+    </div>
+    <div class="form-group">
+        <label for="includeUpper">Uključi velika slova:</label>
+        <input type="checkbox" id="includeUpper" name="IncludeUpper">
+    </div>
+    <div class="form-group">
+        <label for="includeLower">Uključi mala slova:</label>
+        <input type="checkbox" id="includeLower" name="IncludeLower">
+    </div>
+    <button type="submit" class="btn btn-primary">Generiraj lozinke</button>
+</form>
+
+@if (Model.Passwords != null && Model.Passwords.Any())
+{
+    <div class="mt-3">
+        <h2>Generirane lozinke:</h2>
+        <ul>
+            @foreach (var password in Model.Passwords)
+            {
+                <li>@password</li>
+            }
+        </ul>
+    </div>
 }
